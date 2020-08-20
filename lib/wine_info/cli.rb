@@ -1,8 +1,14 @@
-require 'pry'
+#require 'pry'
 class WineInfo::CLI 
+  
   def call 
     puts "Welcome to Wine Info!!"
-    binding.pry
+    WINEINFO::API.get_categories
+    
+  end
+  
+  def menu
+    
   end
   
   

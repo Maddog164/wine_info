@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/wine_info"
+require_relative "../lib/wine_info.rb"
 
 WineInfo::CLI.new.call

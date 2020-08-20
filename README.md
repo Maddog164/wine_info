@@ -4,6 +4,14 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 TODO: Delete this and the text above, and describe your gem
 
+#TODO
+
+1. List the wine categories that the user can choose
+2. User chooses category
+3. List the top objects from that category
+4. User chooses object
+5. Display more object details
+
 ## Installation
 
 Add this line to your application's Gemfile:
