@@ -3,7 +3,7 @@ class WineInfo::CLI
   
   def call 
     puts "Welcome to Wine Info!!"
-    WineInfo::API.get_info("petrus","2011")
+    WineInfo::API.get_info("molly dooker blue eyed boy","2")
     
   end
   
