@@ -11,8 +11,9 @@ class WineInfo::API
     uri = URI.parse(url)
     #uri = URI.parse('https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=molly+dooker&vintage=2&currencycode=USD')
     response = Net::HTTP.get_response(uri)
-    response.body
-    binding.pry 
+    response_hash = JSON.parse(response.body)
+    WineInfo::Wine.new(response_hash)
+    #binding.pry 
   end
   
   
