@@ -9,21 +9,22 @@ class WineInfo::API
   
  
   def self.get_info(wine_desc)
-    binding.pry
+    #binding.pry
     vintage = 2015
     until vintage == 2019 do
       url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
       uri = URI.parse(url)
       response = Net::HTTP.get_response(uri)
       response_hash = JSON.parse(response.body)
-      if response_hash["return-code"]== "1"
-        WineInfo::CLI.menu(message="No Wine Matches Were Found. Please Enter A Valid Producer and Wine")
-        elsif response_hash["return-code"]== "8"
-          WineInfo::CLI.menu(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Type of Wine")
-        elsif response_hash["return-code"]== "0"
+      binding.pry
+      if (response_hash["return-code"]) == 1
+        WineInfo::CLI.new(message="No Wine Matches Were Found. Please Enter A Valid Producer and Wine")
+        elsif (response_hash["return-code"]) == 8
+          WineInfo::CLI.new(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Type of Wine")
+        elsif (response_hash["return-code"]) == 0
           WineInfo::Wine.new(wine_desc,vintage,response_hash)
         else
-          WineInfo::CLI.menu(message="Please Enter a Valid Producer") 
+          WineInfo::CLI.new(message="Please Enter a Valid Producer") 
       end #if
       vintage += 1
       #binding.pry 
