@@ -3,13 +3,15 @@ class WineInfo::CLI
   
   def call 
     puts "Welcome to Wine Info!!"
-    WineInfo::API.get_info("domaine durand reserve sancerre","2017")
+    menu
+    
     
   end
   
-  def menu
-    
-    
+  def menu(message="Enter the Wine You Would Like to Look Up")
+    puts message
+    input = gets(wine_desc)
+        WineInfo::API.get_info(wine_desc)
     
   end
   
