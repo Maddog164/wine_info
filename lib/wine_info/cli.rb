@@ -10,8 +10,9 @@ class WineInfo::CLI
   
   def menu(message="Enter the Wine You Would Like to Look Up")
     puts message
-    input = gets(wine_desc)
-        WineInfo::API.get_info(wine_desc)
+    input = gets.chomp
+    binding.pry
+    WineInfo::API.get_info(input)
     
   end
   
