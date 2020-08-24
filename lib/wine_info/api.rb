@@ -7,10 +7,10 @@ class WineInfo::API
   
   attr_accessor :wine_desc, :vintage
   
-  def initialize (wine_desc,vintage)
-    wine_desc = "molly dooker blue eyed boy"
-    vintage = "2"
-  end
+  # def initialize (wine_desc,vintage)
+  #   wine_desc = "molly dooker blue eyed boy"
+  #   vintage = "2"
+  # end
     
   
   def self.get_info(wine_desc,vintage)
