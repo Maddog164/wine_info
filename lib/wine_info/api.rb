@@ -16,7 +16,7 @@ class WineInfo::API
       uri = URI.parse(url)
       response = Net::HTTP.get_response(uri)
       response_hash = JSON.parse(response.body)
-      binding.pry
+      #binding.pry
       if (response_hash["return-code"]) == 1
         WineInfo::CLI.new(message="No Wine Matches Were Found. Please Enter A Valid Producer and Wine")
         elsif (response_hash["return-code"]) == 8
@@ -29,6 +29,8 @@ class WineInfo::API
       vintage += 1
       #binding.pry 
     end #do
+    binding.pry
+    WineInfo::CLI.new(message="Here are the results of your search:",wine_desc)
   end
   
   

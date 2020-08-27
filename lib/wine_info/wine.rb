@@ -6,7 +6,7 @@ class WineInfo::Wine
   @@wine_hash = {}
   
   def initialize(wine_desc, vintage, response_hash)
-    binding.pry
+    #binding.pry
     @region = response_hash["wine-details"][0]["region"]
     @grape = response_hash["wine-details"][0]["grape"]
     @price_avg = response_hash["wine-details"][0]["price-average"]
@@ -14,18 +14,20 @@ class WineInfo::Wine
     @price_max = response_hash["wine-details"][0]["price-max"]
     @ws_score = response_hash["wine-details"][0]["ws-score"]
     @@wine_hash = {"wine_desc" => wine_desc,
-                  # "vintage" => vintage,
+                   "vintage" => vintage,
                    "region" => @region,
-                   "grape" => @grape
-                  # "price_avg" => @price_avg,
-                  # "price_min" => @price_min,
-                  # "price_max" => @price_max
-                  # "ws_score"  => @ws_score
+                   "grape" => @grape,
+                   "price_avg" => @price_avg,
+                   "price_min" => @price_min,
+                   "price_max" => @price_max,
+                   "ws_score"  => @ws_score
                    }
     @@all << @@wine_hash
-    binding.pry
-    
+    #binding.pry
   end
   
+  # def print_deets_of_search
+  #   puts @@wine_hash
+  # end
   
-end
+ end
