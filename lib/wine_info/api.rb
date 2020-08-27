@@ -10,7 +10,7 @@ class WineInfo::API
  
   def self.get_info(wine_desc)
     #binding.pry
-    vintage = 2015
+    vintage = 2018
     until vintage == 2019 do
       url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
       uri = URI.parse(url)

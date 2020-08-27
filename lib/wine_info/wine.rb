@@ -26,6 +26,10 @@ class WineInfo::Wine
     #binding.pry
   end
   
+  def self.all
+    @@all
+  end
+  
   # def print_deets_of_search
   #   puts @@wine_hash
   # end

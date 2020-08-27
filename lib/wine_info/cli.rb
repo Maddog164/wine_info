@@ -22,13 +22,17 @@ class WineInfo::CLI
       #binding.pry
       WineInfo::API.get_info(input)
     end
-    
   end
       
   def list_wineinfo(klass,wine_desc)
-    puts klass
+    nice_wine_desc = wine_desc.split.map(&:capitalize).join(" ")
+    puts "#{nice_wine_desc}"
+    #puts klass.all
+    
+    # klass.all  do |value|
+    #   "#{vintage}, Average Price: #{price_avg}   Wine Score: #{ws_score}"
+    # end
   end
   
  
-  
 end
