@@ -10,13 +10,13 @@ class WineInfo::API
  
   def self.get_info(wine_desc)
     #binding.pry
-    vintage = 2018
+    vintage = 2017
     until vintage == 2019 do
       url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
       uri = URI.parse(url)
       response = Net::HTTP.get_response(uri)
       response_hash = JSON.parse(response.body)
-      #binding.pry
+      binding.pry
       if (response_hash["return-code"]) == 1
         WineInfo::CLI.new(message="No Wine Matches Were Found. Please Enter A Valid Producer and Wine")
         elsif (response_hash["return-code"]) == 8

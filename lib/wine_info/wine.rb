@@ -23,7 +23,7 @@ class WineInfo::Wine
                    "ws_score"  => @ws_score
                    }
     @@all << @@wine_hash
-    #binding.pry
+    binding.pry
   end
   
   def self.all
