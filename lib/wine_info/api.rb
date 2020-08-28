@@ -29,7 +29,7 @@ class WineInfo::API
       vintage += 1
       #binding.pry 
     end #do
-    binding.pry
+    #binding.pry
     WineInfo::CLI.new(message="Here are the results of your search:",wine_desc)
   end
   
