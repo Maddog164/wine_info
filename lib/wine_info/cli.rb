@@ -59,7 +59,7 @@ class WineInfo::CLI
     puts "Welcome to Wine Info!!"
     @message = "Enter the Wine You Would Like to Look Up"
     binding.pry
-    menu(@message, wine_desc=nil)
+    menu(message, wine_desc=nil)
   end
   
  
