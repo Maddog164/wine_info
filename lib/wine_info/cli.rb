@@ -26,17 +26,27 @@ class WineInfo::CLI
   #     WineInfo::API.get_info(input)
   #   end
   # end
-      
-  def list_wineinfo(klass,wine_desc)
+  
+    def list_wineinfo(klass,wine_desc)
     # if wine_desc != nil
     #   nice_wine_desc = wine_desc.split.map(&:capitalize).join(" ")
     #   puts "#{nice_wine_desc}"
     i = 0 
-    binding.pry
+    #binding.pry
+    hold_wine_desc = ""
     klass.all.each do |wine_desc|
-      puts "#{klass.all[i]["wine_desc"]}.split.map(&:capitalize).join(" ") "
+    #binding.pry
+     # if wine_desc == nil || wine_desc == klass.all[i]["wine_desc"]
+        if hold_wine_desc != klass.all[i]["wine_desc"]
+          puts ("Wine Description #{klass.all[i]["wine_desc"].split.map(&:capitalize).join(" ")}")
+          hold_wine_desc = klass.all[i]["wine_desc"]
+        end #if
+        puts ("   #{klass.all[i]["vintage"]}  Average Price  #{klass.all[i]["price_avg"]}   Score: #{klass.all[i]["ws_score"]}")
+        #puts "#{klass.all[i]["wine_desc"]}"
+      #end #if
       i += 1
     end #do
+    call
       
   #   while i < 4 && klass.all[i] != nil do
   #     if ii = 0 

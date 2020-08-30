@@ -1,3 +1,4 @@
+
 require 'pry'
 require 'net/http'
 require 'open-uri'
@@ -10,7 +11,6 @@ class WineInfo::API
  
   def self.get_info(wine_desc)
     #binding.pry
-    puts "starting over at line 13"
     hold_hash_array = []
     vintage = 2015
     until vintage == 2019 do
@@ -20,18 +20,35 @@ class WineInfo::API
       # response_hash = JSON.parse(response.body)
       # binding.pry
       #hold_hash_array << {"return-code"=>1, "return-comment"=>"No matching wines", "list-count"=>0}
-      hold_hash_array << {"return-code"=>0,
-      "list-comment"=>"Price Check",
-      "list-location"=>"",
-      "list-state"=>"",
-      "list-currency-code"=>"USD",
-      "wine-details"=>
-      [{"region"=>"South Australia",
-      "grape"=>"Shiraz",
-      "price-average"=>"52.06",
-      "price-min"=>"41.38",
-      "price-max"=>"57.40",
-      "ws-score"=>95}]}
+      if wine_desc == "molly dooker"
+        hold_hash_array << {"return-code"=>0,
+        "list-comment"=>"Price Check",
+        "list-location"=>"",
+        "list-state"=>"",
+        "list-currency-code"=>"USD",
+        "wine-details"=>
+        [{"region"=>"South Australia",
+        "grape"=>"Shiraz",
+        "price-average"=>"52.06",
+        "price-min"=>"41.38",
+        "price-max"=>"57.40",
+        "ws-score"=>95}]}
+      end
+      if wine_desc == "kentucky"
+        hold_hash_array << {"return-code"=>0,
+        "list-comment"=>"Price Check",
+        "list-location"=>"",
+        "list-state"=>"",
+        "list-currency-code"=>"USD",
+        "wine-details"=>
+        [{"region"=>"kentucky",
+        "grape"=>"Raspberries",
+        "price-average"=>"52.06",
+        "price-min"=>"41.38",
+        "price-max"=>"57.40",
+        "ws-score"=>85}]}
+      end
+      #binding.pry 
       #hold_hash_array << response_hash
       if (hold_hash_array[0]["return-code"]) != nil &&  (hold_hash_array[0]["return-code"])== 8
           WineInfo::CLI.new.menu(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer",wine_desc=nil)
