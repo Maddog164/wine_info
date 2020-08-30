@@ -8,13 +8,14 @@ class WineInfo::CLI
   #   menu(message, wine_desc)
   # end
   
-  def call 
-    puts "Welcome to Wine Info!!"
-    @message = "Enter the Wine You Would Like to Look Up"
-    self.menu(message, wine_desc=nil)
-  end
+  # def call 
+  #   puts "Welcome to Wine Info!!"
+  #   @message = "Enter the Wine You Would Like to Look Up"
+  #   binding.pry
+  #   self.menu(@message, wine_desc=nil)
+  # end
   
-  def self.menu(message, wine_desc)
+  def menu(message, wine_desc)
     if message == "Here are the results of your search:"
       puts message
       self.list_wineinfo(klass=WineInfo::Wine,wine_desc)
@@ -40,6 +41,13 @@ class WineInfo::CLI
     #klass.all
     #   "#{vintage}, Average Price: #{price_avg}   Wine Score: #{ws_score}"
     # end
+  end
+  
+  def call 
+    puts "Welcome to Wine Info!!"
+    @message = "Enter the Wine You Would Like to Look Up"
+    binding.pry
+    menu(@message, wine_desc=nil)
   end
   
  

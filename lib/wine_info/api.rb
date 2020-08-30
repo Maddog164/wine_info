@@ -13,12 +13,13 @@ class WineInfo::API
     hold_hash_array = []
     vintage = 2018
     until vintage == 2019 do
-      url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
-      uri = URI.parse(url)
-      response = Net::HTTP.get_response(uri)
-      response_hash = JSON.parse(response.body)
+      # url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
+      # uri = URI.parse(url)
+      # response = Net::HTTP.get_response(uri)
+      # response_hash = JSON.parse(response.body)
       #binding.pry
-      hold_hash_array << response_hash
+      hold_hash_array = {"return-code"=>1, "return-comment"=>"No matching wines", "list-count"=>0}
+      #hold_hash_array << response_hash
       vintage += 1
     end #do
     binding.pry
