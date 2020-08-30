@@ -10,32 +10,56 @@ class WineInfo::API
  
   def self.get_info(wine_desc)
     #binding.pry
+    puts "starting over at line 13"
+    i=8
     hold_hash_array = []
-    vintage = 2018
+    vintage = 2015
     until vintage == 2019 do
       # url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
       # uri = URI.parse(url)
       # response = Net::HTTP.get_response(uri)
       # response_hash = JSON.parse(response.body)
-      #binding.pry
-      hold_hash_array << {"return-code"=>1, "return-comment"=>"No matching wines", "list-count"=>0}
+      # binding.pry
+      #hold_hash_array << {"return-code"=>1, "return-comment"=>"No matching wines", "list-count"=>0}
+      hold_hash_array << {"return-code"=>i,
+      "list-comment"=>"Price Check",
+      "list-location"=>"",
+      "list-state"=>"",
+      "list-currency-code"=>"USD",
+      "wine-details"=>
+      [{"region"=>"South Australia",
+      "grape"=>"Shiraz",
+      "price-average"=>"52.06",
+      "price-min"=>"41.38",
+      "price-max"=>"57.40",
+      "ws-score"=>91}]}
       #hold_hash_array << response_hash
+      if (hold_hash_array[0]["return-code"]) != nil &&  (hold_hash_array[0]["return-code"])== 8
+          puts i
+          WineInfo::CLI.new.menu(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer",wine_desc=nil)
+          i += 1
+          puts i
+      end
       vintage += 1
+      i += 1
+      binding.pry
     end #do
     binding.pry
     # response_hash.each do
-    if (hold_hash_array[0]["return-code"]) != nil &&  (hold_hash_array[0]["return-code"])== 8
-        WineInfo::CLI.new.menu(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer",wine_desc=nil)
-      elsif hold_hash_array.length > 0 && (hold_hash_array[0]["return-code"]) != nil && (hold_hash_array[0]["return-code"])==0
-        WineInfo::Wine.new(wine_desc,vintage=2015,hold_hash_array[0])
-      elsif hold_hash_array.length > 1 && (hold_hash_array[1]["return-code"])!= nil && (hold_hash_array[1]["return-code"])==0
-        WineInfo::Wine.new(wine_desc,vintage=2016,hold_hash_array[1])
-      elsif hold_hash_array.length > 2 && (hold_hash_array[2]["return-code"])!= nil && (hold_hash_array[2]["return-code"])==0
-        WineInfo::Wine.new(wine_desc,vintage=2017,hold_hash_array[2])
-      elsif hold_hash_array.length >3 && (hold_hash_array[3]["return-code"])!= nil && (hold_hash_array[3]["return-code"])==0
-        WineInfo::Wine.new(wine_desc,vintage=2018,hold_hash_array[3])
-      else WineInfo::CLI.new.menu(message="Please Enter a Valid Producer",wine_desc=nil) 
-    end
+    counter = 0
+    # while counter < 4 do
+      if (hold_hash_array[i]["return-code"]) != nil &&  (hold_hash_array[i]["return-code"])== 8
+          WineInfo::CLI.new.menu(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer",wine_desc=nil)
+        elsif hold_hash_array.length > i && (hold_hash_array[i]["return-code"]) != nil && (hold_hash_array[i]["return-code"])==0
+          WineInfo::Wine.new(wine_desc,vintage=2015,hold_hash_array[0])
+        elsif hold_hash_array.length > 1 && (hold_hash_array[1]["return-code"])!= nil && (hold_hash_array[1]["return-code"])==0
+          WineInfo::Wine.new(wine_desc,vintage=2016,hold_hash_array[1])
+        elsif hold_hash_array.length > 2 && (hold_hash_array[2]["return-code"])!= nil && (hold_hash_array[2]["return-code"])==0
+          WineInfo::Wine.new(wine_desc,vintage=2017,hold_hash_array[2])
+        elsif hold_hash_array.length >3 && (hold_hash_array[3]["return-code"])!= nil && (hold_hash_array[3]["return-code"])==0
+          WineInfo::Wine.new(wine_desc,vintage=2018,hold_hash_array[3])
+        else WineInfo::CLI.new.menu(message="Please Enter a Valid Producer",wine_desc=nil) 
+    end #if
       
       # WineInfo::CLI.new(message="No Wine Matches Were Found. Please Enter A Valid Producer and Wine")
       # elsif (response_hash["return-code"]) == 8
@@ -48,8 +72,9 @@ class WineInfo::API
       
     #binding.pry 
     #binding.pry
-    WineInfo::CLI.new(message="Here are the results of your search:",wine_desc)
+    WineInfo::CLI.new.menu(message="Here are the results of your search:",wine_desc)
   end
+  
   
   
 end
