@@ -37,15 +37,20 @@ class WineInfo::API
           WineInfo::CLI.new.menu(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer",wine_desc=nil)
       end
       vintage += 1
-      binding.pry
+      #binding.pry
     end #do
-    binding.pry
+    #binding.pry
     # response_hash.each do
+    vintage = 2015
     i = 0
     while i < 4 do
       if hold_hash_array.length > i && (hold_hash_array[i]["return-code"])==0
-          WineInfo::Wine.new(wine_desc,vintage=2015,hold_hash_array[0])
+          WineInfo::Wine.new(wine_desc,vintage,hold_hash_array[0])
           i += 1
+          vintage += 1
+        elsif hold_hash_array.length > i && (hold_hash_array[i]["return-code"])==1 
+          i += 1
+          vintage += 1
         else WineInfo::CLI.new.menu(message="Please Enter a Valid Producer",wine_desc=nil) 
       end #if
     end #do
