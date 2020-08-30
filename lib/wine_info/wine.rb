@@ -32,6 +32,8 @@ class WineInfo::Wine
   
   def self.del_wine(wine_desc)
     puts "deleting wine"
+    binding.pry
+    self.all.reject {|wine_desc| wine_desc["wine_desc"]}
     
   end
   

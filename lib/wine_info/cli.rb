@@ -44,7 +44,7 @@ class WineInfo::CLI
         if hold_wine_desc != klass.all[i]["wine_desc"]
          puts ("#{(t+1).to_s}"+ ": #{klass.all[i]["wine_desc"].split.map(&:capitalize).join(" ")}")
          hold_wine_desc = klass.all[i]["wine_desc"]
-         temp_array << "wine_desc"
+         temp_array << hold_wine_desc
          t += 1
         end #if
         i += 1
