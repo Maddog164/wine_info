@@ -25,7 +25,7 @@ class WineInfo::API
     # response_hash.each do
     if (hold_hash_array[0]["return-code"]) != nil &&  (hold_hash_array[0]["return-code"])== 8
         WineInfo::CLI.new(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer")
-      elsif (hold_hash_array[0]["return-code"]) != nil && (hold_hash_array[0]["return-code"])==0
+      elsif hold_hash_array.length > 0 && (hold_hash_array[0]["return-code"]) != nil && (hold_hash_array[0]["return-code"])==0
         WineInfo::Wine.new(wine_desc,vintage=2015,hold_hash_array[0])
       elsif hold_hash_array.length > 1 && (hold_hash_array[1]["return-code"])!= nil && (hold_hash_array[1]["return-code"])==0
         WineInfo::Wine.new(wine_desc,vintage=2016,hold_hash_array[1])

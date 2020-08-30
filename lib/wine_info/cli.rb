@@ -15,6 +15,7 @@ class WineInfo::CLI
   
   def menu(message, wine_desc)
     if message == "Here are the results of your search:"
+      puts message
       self.list_wineinfo(klass=WineInfo::Wine,wine_desc)
     else
       puts message
