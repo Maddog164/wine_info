@@ -3,17 +3,18 @@ class WineInfo::CLI
 
   attr_accessor :message, :wine_desc
   
-  def initialize(message="Enter the Wine You Would Like to Look Up",wine_desc=nil)
-    @message = message
-    menu(message, wine_desc)
-  end
+  # def initialize(message="Enter the Wine You Would Like to Look Up",wine_desc=nil)
+  #   @message = message
+  #   menu(message, wine_desc)
+  # end
   
   def call 
     puts "Welcome to Wine Info!!"
-    menu(message, wine_desc)
+    @message = "Enter the Wine You Would Like to Look Up"
+    self.menu(message, wine_desc=nil)
   end
   
-  def menu(message, wine_desc)
+  def self.menu(message, wine_desc)
     if message == "Here are the results of your search:"
       puts message
       self.list_wineinfo(klass=WineInfo::Wine,wine_desc)
@@ -25,7 +26,7 @@ class WineInfo::CLI
     end
   end
       
-  def list_wineinfo(klass,wine_desc)
+  def self.list_wineinfo(klass,wine_desc)
     nice_wine_desc = wine_desc.split.map(&:capitalize).join(" ")
     puts "#{nice_wine_desc}"
     #binding.pry

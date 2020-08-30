@@ -24,7 +24,7 @@ class WineInfo::API
     binding.pry
     # response_hash.each do
     if (hold_hash_array[0]["return-code"]) != nil &&  (hold_hash_array[0]["return-code"])== 8
-        WineInfo::CLI.new(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer")
+        WineInfo::CLI.menu(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer",wine_desc=nil)
       elsif hold_hash_array.length > 0 && (hold_hash_array[0]["return-code"]) != nil && (hold_hash_array[0]["return-code"])==0
         WineInfo::Wine.new(wine_desc,vintage=2015,hold_hash_array[0])
       elsif hold_hash_array.length > 1 && (hold_hash_array[1]["return-code"])!= nil && (hold_hash_array[1]["return-code"])==0
@@ -33,7 +33,7 @@ class WineInfo::API
         WineInfo::Wine.new(wine_desc,vintage=2017,hold_hash_array[2])
       elsif hold_hash_array.length >3 && (hold_hash_array[3]["return-code"])!= nil && (hold_hash_array[3]["return-code"])==0
         WineInfo::Wine.new(wine_desc,vintage=2018,hold_hash_array[3])
-      else WineInfo::CLI.new(message="Please Enter a Valid Producer") 
+      else WineInfo::CLI.menu(message="Please Enter a Valid Producer",wine_desc=nil) 
     end
       
       # WineInfo::CLI.new(message="No Wine Matches Were Found. Please Enter A Valid Producer and Wine")
