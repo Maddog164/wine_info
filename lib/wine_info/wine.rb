@@ -30,6 +30,11 @@ class WineInfo::Wine
     @@all
   end
   
+  def self.del_wine(wine_desc)
+    puts "deleting wine"
+    
+  end
+  
   # def print_deets_of_search
   #   puts @@wine_hash
   # end
