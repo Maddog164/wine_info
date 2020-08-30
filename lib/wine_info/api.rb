@@ -11,7 +11,7 @@ class WineInfo::API
   def self.get_info(wine_desc)
     #binding.pry
     hold_hash_array = []
-    vintage = 2017
+    vintage = 2018
     until vintage == 2019 do
       url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
       uri = URI.parse(url)
@@ -23,14 +23,17 @@ class WineInfo::API
     end #do
     binding.pry
     # response_hash.each do
-    if (hold_hash_array[0]["return-code"]) == 0
-      WineInfo::Wine.new(wine_desc,vintage=2015,hold_hash_array[0])
-    elsif (hold_hash_array[1]["return-code"])==0
-      WineInfo::Wine.new(wine_desc,vintage=2016,hold_hash_array[1])
-    elsif (hold_hash_array[2]["return-code"])==0
-      WineInfo::Wine.new(wine_desc,vintage=2017,hold_hash_array[2])
-    else (hold_hash_array[3]["return-code"])==0
-      WineInfo::Wine.new(wine_desc,vintage=2018,hold_hash_array[3])
+    if (hold_hash_array[0]["return-code"]) != nil &&  (hold_hash_array[0]["return-code"])== 8
+        WineInfo::CLI.new(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer")
+      elsif (hold_hash_array[0]["return-code"]) != nil && (hold_hash_array[0]["return-code"])==0
+        WineInfo::Wine.new(wine_desc,vintage=2015,hold_hash_array[0])
+      elsif hold_hash_array.length > 1 && (hold_hash_array[1]["return-code"])!= nil && (hold_hash_array[1]["return-code"])==0
+        WineInfo::Wine.new(wine_desc,vintage=2016,hold_hash_array[1])
+      elsif hold_hash_array.length > 2 && (hold_hash_array[2]["return-code"])!= nil && (hold_hash_array[2]["return-code"])==0
+        WineInfo::Wine.new(wine_desc,vintage=2017,hold_hash_array[2])
+      elsif hold_hash_array.length >3 && (hold_hash_array[3]["return-code"])!= nil && (hold_hash_array[3]["return-code"])==0
+        WineInfo::Wine.new(wine_desc,vintage=2018,hold_hash_array[3])
+      else WineInfo::CLI.new(message="Please Enter a Valid Producer") 
     end
       
       # WineInfo::CLI.new(message="No Wine Matches Were Found. Please Enter A Valid Producer and Wine")
