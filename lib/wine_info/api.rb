@@ -38,10 +38,10 @@ class WineInfo::API
           WineInfo::Wine.new(wine_desc,vintage,hold_hash_array[i])
           i += 1
           vintage += 1
-        elsif hold_hash_array.length > i && (hold_hash_array[i]["return-code"])==1 
+        else hold_hash_array.length > i && (hold_hash_array[i]["return-code"])==1 
           i += 1
           vintage += 1
-        else WineInfo::CLI.new.menu(message="Please Enter a Valid Producer",wine_desc=nil) 
+        #else WineInfo::CLI.new.menu(message="Please Enter a Valid Producer",wine_desc=nil) 
       end #if
     end #do
     WineInfo::CLI.new.menu(message="Here are the results of your search:",wine_desc)

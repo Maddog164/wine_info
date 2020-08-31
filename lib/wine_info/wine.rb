@@ -34,14 +34,14 @@ class WineInfo::Wine
     @@all2 = []
     puts "deleting wine"
     i=0
-    binding.pry
+    #binding.pry
     while i < self.all.length do
       if self.all[i]["wine_desc"] != wine_desc
         @@all2 << self.all[i]
       end
       i += 1 
     end #do
-    binding.pry
+    #binding.pry
     @@all = @@all2
     
     #   if self.all[i]["wine_desc"]== wine_desc
