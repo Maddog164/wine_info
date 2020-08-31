@@ -35,7 +35,7 @@ class WineInfo::API
     while i < 4 do
       #binding.pry
       if hold_hash_array.length > i && (hold_hash_array[i]["return-code"])==0
-          WineInfo::Wine.new(wine_desc,vintage,hold_hash_array[0])
+          WineInfo::Wine.new(wine_desc,vintage,hold_hash_array[i])
           i += 1
           vintage += 1
         elsif hold_hash_array.length > i && (hold_hash_array[i]["return-code"])==1 
