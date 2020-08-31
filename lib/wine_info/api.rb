@@ -11,6 +11,8 @@ class WineInfo::API
  
   def self.get_info(wine_desc)
     #binding.pry
+    system("clear")
+    puts "Retrieving your information for #{wine_desc}"
     hold_hash_array = []
     vintage = 2017
     until vintage == 2019 do
@@ -43,19 +45,7 @@ class WineInfo::API
       end #if
     end #do
     WineInfo::CLI.new.menu(message="Here are the results of your search:",wine_desc)
-      
-            # WineInfo::CLI.new(message="No Wine Matches Were Found. Please Enter A Valid Producer and Wine")
-      # elsif (response_hash["return-code"]) == 8
-      #   WineInfo::CLI.new(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Type of Wine")
-      # elsif (response_hash["return-code"]) == 0
-      #   WineInfo::Wine.new(wine_desc,vintage,response_hash)
-      # else
-      #   WineInfo::CLI.new(message="Please Enter a Valid Producer") 
-      # end #if
-      
-    #binding.pry 
-    #binding.pry
-    
+   
   end
   
   
