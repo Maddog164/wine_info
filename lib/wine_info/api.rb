@@ -19,37 +19,7 @@ class WineInfo::API
       response = Net::HTTP.get_response(uri)
       response_hash = JSON.parse(response.body)
       binding.pry
-      hold_hash_array << {"return-code"=>1, "return-comment"=>"No matching wines", "list-count"=>0}
-      # if wine_desc == "molly dooker"
-      #   hold_hash_array << {"return-code"=>0,
-      #   "list-comment"=>"Price Check",
-      #   "list-location"=>"",
-      #   "list-state"=>"",
-      #   "list-currency-code"=>"USD",
-      #   "wine-details"=>
-      #   [{"region"=>"South Australia",
-      #   "grape"=>"Shiraz",
-      #   "price-average"=>"52.06",
-      #   "price-min"=>"41.38",
-      #   "price-max"=>"57.40",
-      #   "ws-score"=>95}]}
-      # end
-      # if wine_desc == "kentucky"
-      #   hold_hash_array << {"return-code"=>0,
-      #   "list-comment"=>"Price Check",
-      #   "list-location"=>"",
-      #   "list-state"=>"",
-      #   "list-currency-code"=>"USD",
-      #   "wine-details"=>
-      #   [{"region"=>"kentucky",
-      #   "grape"=>"Raspberries",
-      #   "price-average"=>"52.06",
-      #   "price-min"=>"41.38",
-      #   "price-max"=>"57.40",
-      #   "ws-score"=>85}]}
-      # end
-      #binding.pry 
-      #hold_hash_array << response_hash
+      hold_hash_array << response_hash
       if (hold_hash_array[0]["return-code"]) != nil &&  (hold_hash_array[0]["return-code"])== 8
           WineInfo::CLI.new.menu(message="Too Many Matches Were Found. Please Narrow Your Search to a Specific Producer",wine_desc=nil)
       end
@@ -60,7 +30,8 @@ class WineInfo::API
     # response_hash.each do
     vintage = 2015
     i = 0
-    while i < 4 do
+    while i < 2 do
+      binding.pry
       if hold_hash_array.length > i && (hold_hash_array[i]["return-code"])==0
           WineInfo::Wine.new(wine_desc,vintage,hold_hash_array[0])
           i += 1
