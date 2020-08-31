@@ -31,11 +31,25 @@ class WineInfo::Wine
   end
   
   def self.del_wine(wine_desc)
+    @@all2 = []
     puts "deleting wine"
+    i=0
     binding.pry
-    self.all.reject {|wine_desc| wine_desc["wine_desc"]}
+    while i < self.all.length do
+      if self.all[i]["wine_desc"] != wine_desc
+        @@all2 << self.all[i]
+      end
+      i += 1 
+    end #do
+    binding.pry
+    @@all = @@all2
     
-  end
+    #   if self.all[i]["wine_desc"]== wine_desc
+    #     self.all[i].clear 
+    #     binding.pry
+    #   end
+    # i+=1 
+ end
   
   # def print_deets_of_search
   #   puts @@wine_hash

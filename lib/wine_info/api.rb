@@ -12,42 +12,42 @@ class WineInfo::API
   def self.get_info(wine_desc)
     #binding.pry
     hold_hash_array = []
-    vintage = 2015
+    vintage = 2017
     until vintage == 2019 do
-      # url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
-      # uri = URI.parse(url)
-      # response = Net::HTTP.get_response(uri)
-      # response_hash = JSON.parse(response.body)
-      # binding.pry
-      #hold_hash_array << {"return-code"=>1, "return-comment"=>"No matching wines", "list-count"=>0}
-      if wine_desc == "molly dooker"
-        hold_hash_array << {"return-code"=>0,
-        "list-comment"=>"Price Check",
-        "list-location"=>"",
-        "list-state"=>"",
-        "list-currency-code"=>"USD",
-        "wine-details"=>
-        [{"region"=>"South Australia",
-        "grape"=>"Shiraz",
-        "price-average"=>"52.06",
-        "price-min"=>"41.38",
-        "price-max"=>"57.40",
-        "ws-score"=>95}]}
-      end
-      if wine_desc == "kentucky"
-        hold_hash_array << {"return-code"=>0,
-        "list-comment"=>"Price Check",
-        "list-location"=>"",
-        "list-state"=>"",
-        "list-currency-code"=>"USD",
-        "wine-details"=>
-        [{"region"=>"kentucky",
-        "grape"=>"Raspberries",
-        "price-average"=>"52.06",
-        "price-min"=>"41.38",
-        "price-max"=>"57.40",
-        "ws-score"=>85}]}
-      end
+      url = "https://api.wine-searcher.com/x?api_key=test6ws20200819ur&winename=#{wine_desc}&vintage=#{vintage}&format=J"
+      uri = URI.parse(url)
+      response = Net::HTTP.get_response(uri)
+      response_hash = JSON.parse(response.body)
+      binding.pry
+      hold_hash_array << {"return-code"=>1, "return-comment"=>"No matching wines", "list-count"=>0}
+      # if wine_desc == "molly dooker"
+      #   hold_hash_array << {"return-code"=>0,
+      #   "list-comment"=>"Price Check",
+      #   "list-location"=>"",
+      #   "list-state"=>"",
+      #   "list-currency-code"=>"USD",
+      #   "wine-details"=>
+      #   [{"region"=>"South Australia",
+      #   "grape"=>"Shiraz",
+      #   "price-average"=>"52.06",
+      #   "price-min"=>"41.38",
+      #   "price-max"=>"57.40",
+      #   "ws-score"=>95}]}
+      # end
+      # if wine_desc == "kentucky"
+      #   hold_hash_array << {"return-code"=>0,
+      #   "list-comment"=>"Price Check",
+      #   "list-location"=>"",
+      #   "list-state"=>"",
+      #   "list-currency-code"=>"USD",
+      #   "wine-details"=>
+      #   [{"region"=>"kentucky",
+      #   "grape"=>"Raspberries",
+      #   "price-average"=>"52.06",
+      #   "price-min"=>"41.38",
+      #   "price-max"=>"57.40",
+      #   "ws-score"=>85}]}
+      # end
       #binding.pry 
       #hold_hash_array << response_hash
       if (hold_hash_array[0]["return-code"]) != nil &&  (hold_hash_array[0]["return-code"])== 8
